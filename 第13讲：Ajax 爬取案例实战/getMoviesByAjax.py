@@ -89,8 +89,4 @@ def main():
 
 
 if __name__ == '__main__':
-
-    # main()
-    logging.info("1111")
-    logging.error("1111")
-    logging.debug("1111")
+    main()
