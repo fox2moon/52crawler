@@ -18,10 +18,11 @@ import json
 import pymongo
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s: %(message)s')
+
 INDEX_PAGE_URL = 'https://dynamic2.scrape.cuiqingcai.com/page/{page}'
 INDEX_URL = 'https://dynamic2.scrape.cuiqingcai.com'
 TIME_OUT = 10
-TOTAL_PAGE = 5
+TOTAL_PAGE = 2
 RESULT_DIR = 'result'
 exists(RESULT_DIR) or makedirs(RESULT_DIR)
 
@@ -122,7 +123,8 @@ def main():
                 get_detail(detail_url)
                 detail_data = parse_detail()
                 logging.info('detail data %s', detail_data)
-                save_file(detail_data)
+                # save_file(detail_data)
+                save_mongodb(detail_data)
                 logging.info('data saved successfully')
     finally:
         browser.close()
