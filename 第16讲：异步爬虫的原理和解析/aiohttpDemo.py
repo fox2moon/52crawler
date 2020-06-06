@@ -20,7 +20,7 @@ start = time.time()
 async def request():
     url = "https://www.baidu.com/"
     print('Waiting for ', url)
-    res = await get(url)
+    res = await get(url)  # 要实现异步处理，我们得先要有挂起的操作
     print('Get response from ', url, 'response', res)
 
 
@@ -32,9 +32,9 @@ async def get(url):
     return res
 
 
-tasks = [asyncio.ensure_future(request()) for _ in range(10)]
-loop = asyncio.get_event_loop()
-loop.run_until_complete(asyncio.wait(tasks))
+tasks = [asyncio.ensure_future(request()) for _ in range(10)]  # 定义 task 对象
+loop = asyncio.get_event_loop()  # 创建了一个事件循环 loop
+loop.run_until_complete(asyncio.wait(tasks))  # 将10个协程注册到loop
 end = time.time()
 print('Cost time :', (end-start))
 
